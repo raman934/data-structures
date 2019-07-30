@@ -14,18 +14,20 @@
  * };
  */
 
-class Solution {
-public:
-    bool hasPathSum(TreeNode* root, int sum) {
-        /* base case */
-        if(!root) {
-            return false;
-        }
-        sum -= root->val;
-        /* base case */
-        if(!root->left && !root->right) {
-            return (sum == 0);
-        }
-        return (hasPathSum(root->right, sum) || hasPathSum(root->left, sum));
-    }
-}
+ class Solution {
+ public:
+     bool hasPathSum(TreeNode* root, int sum) {
+         if(!root) {
+             return false;
+         }
+         sum -= root->val; // subtract the curr root val from sum
+         if(!root->left && !root->right) {
+             if (sum == 0) {
+                 return true; // if leaf && sum == 0, path sum found
+             }
+         }
+         bool left = hasPathSum(root->right, sum); // recurse on left subtree
+         bool right = hasPathSum(root->left, sum); // recurse on right subtree
+         return (left||right); // return true if any path found in any subtree
+     }
+ };
