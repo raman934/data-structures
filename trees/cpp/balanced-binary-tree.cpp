@@ -15,7 +15,8 @@
  * };
  */
 
-class Solution {
+/* O(N^2) time complexity */
+class Solution1 {
 public:
     bool isBalanced(TreeNode* root) {
         if(!root) {
@@ -31,5 +32,30 @@ public:
             return 0;
         }
         return max(getDepth(root->left), getDepth(root->right)) + 1;
+    }
+};
+
+/* O(N) time complexity */
+class Solution2 {
+public:
+    bool isBalanced(TreeNode* root) {
+        if(!root) {
+            return true;
+        }
+        bool result = true;
+        getMaxDepth(root, result);
+        return result;
+    }
+
+    int getMaxDepth(TreeNode* root, bool& result) {
+        if(!root) {
+            return 0;
+        }
+        int l = getMaxDepth(root->left, result);
+        int r = getMaxDepth(root->right, result);
+        if(abs(l-r) > 1) {
+            result = false;
+        }
+        return max(l, r) + 1;
     }
 };
