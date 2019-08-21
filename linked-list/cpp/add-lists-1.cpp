@@ -1,5 +1,9 @@
-/* Given a singly linked list, determine if it is a palindrome.
-   LC 234. Palindrome Linked List
+/* You are given two non-empty linked lists representing two non-negative
+   integers. The digits are stored in reverse order and each of their nodes
+   contain a single digit. Add the two numbers and return it as a linked list.
+   You may assume the two numbers do not contain any leading zero,
+   except the number 0 itself.
+   LC 2. Add Two Numbers
    Author: Shruti
 */
 
@@ -33,7 +37,7 @@ public:
                 l3->next = new ListNode((l1->val + l2->val + carry)%10);
                 l3 = l3->next;
             }
-            carry = (l1->val + l2->val+ carry)/10; 
+            carry = (l1->val + l2->val+ carry)/10;
             l1 = l1->next;
             l2 = l2->next;
         }
